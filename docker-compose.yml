@@ -1,0 +1,45 @@
+version: '1.0'
+services:
+  mongo_db: 
+      image: mongo
+      container_name: mongodb
+      environment:
+      - PUID=1000
+      - PGID=1000
+      volumes:
+      - /opt/mongodb/database:/data/db
+      ports:
+      - 27017:27017
+      restart: unless-stopped
+  # nginx:
+  #     depends_on:
+  #       - backend
+  #       - frontend
+  #     restart: always
+  #     build:
+  #       dockerfile: Dockerfile
+  #       context: ./nginx
+  #     ports:
+  #       - "80:80"
+  backend:
+      build: 
+        context: ./backend
+        dockerfile: Dockerfile
+      command: gunicorn --bind 0.0.0.0:5000 manage:app
+      hostname: sovar-family-backend
+      restart: always
+      ports:
+        - 127.0.0.1:3001:3001
+      env_file:
+        - ./.env.prod
+      depends_on:
+        - mongo_db
+  frontend:  
+      build:
+        context: ./services/frontend
+        dockerfile: Dockerfile
+      ports:
+        - 3000:3000
+      env_file:
+      depends_on:
+        - backend
