@@ -1,13 +1,13 @@
 #1. For app
 FROM node:alpine
-WORKDIR /backend-bot
-COPY package.json ./
-COPY package-lock.json ./
-COPY ./ ./
+WORKDIR /usr/src/app
+
+COPY package.json /usr/src/app/package.json
+COPY package-lock.json /usr/src/app/package-lock.json
 RUN npm i
 RUN npm ci
 
-COPY . /app
+COPY . /usr/src/app
 
 ENV CI=true
 ENV PORT=3001
