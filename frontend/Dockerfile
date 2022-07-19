@@ -24,13 +24,13 @@ FROM node:lts AS development
 WORKDIR /app
 
 # 
-COPY package.json /app/package.json
-COPY package-lock.json /app/package-lock.json
+COPY ./Bot-FB-UI/package.json /app/package.json
+COPY ./Bot-FB-UI/package-lock.json /app/package-lock.json
 
 # Same as npm install
 RUN npm ci
 
-COPY . /app
+COPY ./Bot-FB-UI/. /app
 
 ENV CI=true
 ENV PORT=3000

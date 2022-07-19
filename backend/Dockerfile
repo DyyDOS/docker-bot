@@ -7,7 +7,7 @@ COPY ./backend-bot/package-lock.json /usr/src/app/package-lock.json
 RUN npm i
 RUN npm ci
 
-COPY . /usr/src/app
+COPY ./backend-bot/. /usr/src/app
 
 ENV CI=true
 ENV PORT=3001
