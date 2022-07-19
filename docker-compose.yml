@@ -25,8 +25,7 @@ services:
       build: 
         context: ./backend
         dockerfile: Dockerfile
-      command: gunicorn --bind 0.0.0.0:5000 manage:app
-      hostname: sovar-family-backend
+      hostname: bot-backend
       restart: always
       ports:
         - 127.0.0.1:3001:3001
@@ -40,6 +39,5 @@ services:
         dockerfile: Dockerfile
       ports:
         - 3000:3000
-      env_file:
       depends_on:
         - backend
