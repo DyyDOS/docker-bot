@@ -31,8 +31,8 @@ COPY ./Bot-FB-UI/package-lock.json /app/package-lock.json
 RUN npm ci
 
 COPY ./Bot-FB-UI/. /app
-
-ENV CI=true
+COPY ./conf /app/
+ENV CI=true 
 ENV PORT=3000
 
 CMD [ "npm", "start" ]
