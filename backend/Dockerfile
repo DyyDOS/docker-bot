@@ -12,6 +12,4 @@ COPY ./backend-bot/. /usr/src/app/
 ENV CI=true
 ENV PORT=3001
 
-CMD [ "npm", "start" ]
-
 
