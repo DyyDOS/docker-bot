@@ -47,6 +47,7 @@ FROM nginx:alpine
 
 # Copy config nginx
 COPY --from=build /app/conf/app.conf /etc/nginx/conf.d/app.conf
+COPY --from=build /app/conf/api.conf /etc/nginx/conf.d/api.conf
 
 WORKDIR /usr/share/nginx/html
 
