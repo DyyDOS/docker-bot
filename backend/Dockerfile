@@ -1,5 +1,5 @@
 #1. For app
-FROM node:alpine
+FROM node:lts-buster-slim AS development
 WORKDIR /usr/src/app
 
 COPY ./backend-bot/package.json /usr/src/app/package.json
@@ -11,5 +11,7 @@ COPY ./backend-bot/. /usr/src/app/
 
 ENV CI=true
 ENV PORT=3001
+
+CMD [ "npm", "start" ]
 
 
